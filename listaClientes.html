@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="../js/modal.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Lista de clientes</title>
+    <script type="text/javascript">
+/* Máscaras ER */
+function mascara(o,f){
+    v_obj=o
+    v_fun=f
+    setTimeout("execmascara()",1)
+}
+function execmascara(){
+    v_obj.value=v_fun(v_obj.value)
+}
+function mtel(v){
+    v=v.replace(/D/g,"");             //Remove tudo o que não é dígito
+    v=v.replace(/^(d{2})(d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+    v=v.replace(/(d)(d{4})$/,"$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+    return v;
+}
+function id( el ){
+	return document.getElementById( el );
+}
+window.onload = function(){
+	id('telefone').onkeypress = function(){
+		mascara( this, mtel );
+	}
+}
+</script>
+</head>
+
+<body class="white">
+    <div id="titlePage " class="center">
+        <img class="responsive-img " src="https://www.phillyfoodtours.com/wp-content/uploads/2018/03/icon-menu.png" width="5% ">
+    </div>
+
+    <nav>
+        <form action="" method="get" class="form">
+            <button id="btInitial" class="btn yellow">início</button>
+            <button id="btmyRequests" class="btn yellow">Meus pedidos</button>
+            <button id="btProducts" class="btn yellow">Produtos</button>
+            <button id="btExit" class="btn yellow center">Sair</button>
+        </form>
+
+    </nav>
+
+    <div class="form" align="center">
+        <div class="boxs ">
+            <div class="customers ">
+                <label class="boxTitle " id="labelTableclientes "></label>
+                <input type="search" class="center" placeholder="Digite o nome do cliente que deseja pesquisar">
+                <button class="btn-small yellow center black-text  " data-toggle="modal" data-target="#modalAddcustomer"><img src="https://img.icons8.com/cotton/2x/plus--v2.png" width="8%"> </button>
+
+                <table class="table table-hover table-dark ">
+                    <thead>
+                        <tr>
+                            <th scope="col ">#</th>
+                            <th scope="col "> <img src="https://image.flaticon.com/icons/png/128/686/686379.png " width="8% "> Cliente</th>
+                            <th style="background-color: rgba(98, 192, 36, 0.486); " scope="col "> <img src="https://img.icons8.com/dusk/2x/whatsapp.png " width="8% "> Whatsapp</th>
+                            <th scope="col "> <img src="https://img.icons8.com/dusk/2x/address.png " width=8%>Endereço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row ">1</th>
+                            <td>Angélica</td>
+                            <td>999999999</td>
+                            <td>Rua 1</td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">2</th>
+                            <td>Eduardo</td>
+                            <td>999999999</td>
+                            <td>Rua 2</td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">2</th>
+                            <td>Felipe</td>
+                            <td>999999999</td>
+                            <td>Rua 3</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal  center fade black-text  white " id="modalAddcustomer">
+        <div class="modal-dialog modal-lg center red" role="document">
+            <div class="modal-content  white center">
+                <div class="modal-header yellow center black-text">
+                    Cadastro de clientes
+                </div>
+                <div class="modal-body  ">
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="first_name" type="text" class="validate">
+                                    <label for="first_name">Nome</label>
+                                </div>
+                                <div class="input-field col s6">
+                                <input type="text" name="telefone" id="telefone" maxlength="15" />
+                                    <label for="telefone">Whatsapp</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="address" type="text" class="validate">
+                                    <label for="address">Endereço</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="neighborhood" type="password" class="validate">
+                                    <label for="neighborhood">Bairro</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="city" type="text" class="validate">
+                                    <label for="city">Cidade</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="complement" type="text" class="validate">
+                                    <label for="complement">Complemento</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <button type="button" class="buttonControl btn black-text left green">Adicionar</button>
+                                    <button type="button" class="buttonControl btn black-text left yellow ">Limpar</button>
+                                    <button type="button" class="buttonControl btn black-text red right " data-dismiss="modal">Cancelar</button>
+
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer white">
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</htm>
